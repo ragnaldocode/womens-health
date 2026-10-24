@@ -1,0 +1,296 @@
+{
+  "version": 1,
+  "contentStatus": "pendente_de_validacao_clinica",
+  "lastReviewed": "2026-10-24",
+  "disclaimer": "Conteúdo informativo e de apoio à organização da saúde preventiva. Não realiza diagnóstico, não interpreta resultados e não substitui consulta ou orientação de profissional de saúde. As recomendações dependem de histórico pessoal e familiar, sintomas e avaliação clínica individual.",
+  "exams": [
+    {
+      "id": "consulta-ginecologica",
+      "name": "Consulta ginecológica de rotina",
+      "category": "avaliacao-clinica",
+      "purpose": "Avaliação geral da saúde ginecológica: histórico, exame físico, orientação sobre prevenção e definição dos exames indicados para cada fase da vida.",
+      "ageMin": 15,
+      "ageMax": null,
+      "interval": "Anual, ou conforme orientação profissional",
+      "intervalMonths": 12,
+      "conditional": false,
+      "notes": "Antes dos 15 anos, a ida ao ginecologista costuma ser indicada apenas quando há sintomas, dúvidas ou situações específicas. A periodicidade pode variar conforme histórico e fatores de risco.",
+      "source": {
+        "org": "Febrasgo",
+        "title": "Recomendações de rotina em ginecologia",
+        "year": 2023
+      },
+      "lastReviewed": "2026-10-24"
+    },
+    {
+      "id": "papanicolau",
+      "name": "Citologia oncótica do colo do útero (Papanicolau)",
+      "category": "rastreamento",
+      "purpose": "Identificar lesões precursoras do câncer do colo do útero, permitindo tratamento antes que se tornem câncer.",
+      "ageMin": 25,
+      "ageMax": 64,
+      "interval": "A cada 3 anos, após dois exames anuais consecutivos com resultado negativo",
+      "intervalMonths": 36,
+      "conditional": false,
+      "notes": "Indicado para quem já iniciou a vida sexual. O rastreamento no Brasil vai dos 25 aos 64 anos; acima dos 64 anos, pode ser encerrado quando os últimos exames foram negativos nos últimos 5 anos. Não é necessário fazer todo ano.",
+      "source": {
+        "org": "INCA",
+        "title": "Diretrizes brasileiras para o rastreamento do câncer do colo do útero",
+        "year": 2016
+      },
+      "lastReviewed": "2026-10-24"
+    },
+    {
+      "id": "teste-hpv",
+      "name": "Teste de HPV de alto risco (DNA-HPV)",
+      "category": "rastreamento",
+      "purpose": "Detectar a presença do papilomavírus humano de alto risco, principal causa do câncer do colo do útero.",
+      "ageMin": 30,
+      "ageMax": 64,
+      "interval": "A cada 5 anos, quando disponível na rede de saúde",
+      "intervalMonths": 60,
+      "conditional": false,
+      "notes": "Usado como teste primário de rastreamento onde a plataforma está disponível. A disponibilidade varia conforme o município e o serviço de saúde.",
+      "source": {
+        "org": "INCA",
+        "title": "Diretrizes brasileiras para o rastreamento do câncer do colo do útero",
+        "year": 2016
+      },
+      "lastReviewed": "2026-10-24"
+    },
+    {
+      "id": "mamografia",
+      "name": "Mamografia",
+      "category": "rastreamento",
+      "purpose": "Detectar o câncer de mama em estágios iniciais, antes de ser palpável, quando o tratamento tende a ser mais eficaz.",
+      "ageMin": 50,
+      "ageMax": 69,
+      "interval": "A cada 2 anos",
+      "intervalMonths": 24,
+      "conditional": false,
+      "notes": "Rastreamento populacional recomendado dos 50 aos 69 anos. Abaixo dos 50 anos, a indicação depende de avaliação de risco (histórico familiar importante, mutação genética conhecida ou outros fatores) e deve ser discutida com profissional de saúde.",
+      "source": {
+        "org": "INCA",
+        "title": "Diretrizes brasileiras para o rastreamento do câncer de mama",
+        "year": 2015
+      },
+      "lastReviewed": "2026-10-24"
+    },
+    {
+      "id": "exame-clinico-mamas",
+      "name": "Exame clínico das mamas",
+      "category": "avaliacao-clinica",
+      "purpose": "Exame feito por profissional de saúde para identificar alterações nas mamas e orientar a investigação quando necessário.",
+      "ageMin": 40,
+      "ageMax": 69,
+      "interval": "Anual",
+      "intervalMonths": 12,
+      "conditional": false,
+      "notes": "Não substitui a mamografia e não é suficiente como método isolado de rastreamento.",
+      "source": {
+        "org": "INCA",
+        "title": "Diretrizes brasileiras para o rastreamento do câncer de mama",
+        "year": 2015
+      },
+      "lastReviewed": "2026-10-24"
+    },
+    {
+      "id": "autoconhecimento-mamas",
+      "name": "Autoconhecimento das mamas",
+      "category": "prevencao",
+      "purpose": "Conhecer o próprio corpo para reconhecer mudanças e procurar avaliação profissional quando algo parecer diferente.",
+      "ageMin": 20,
+      "ageMax": null,
+      "interval": "Observação no dia a dia, sem técnica ou periodicidade obrigatória",
+      "intervalMonths": null,
+      "conditional": false,
+      "notes": "Não é um exame de rastreamento e não substitui mamografia ou avaliação profissional. Serve para perceber alterações e buscar ajuda precocemente.",
+      "source": {
+        "org": "INCA",
+        "title": "Controle do câncer de mama: orientações sobre autoconhecimento",
+        "year": 2015
+      },
+      "lastReviewed": "2026-10-24"
+    },
+    {
+      "id": "vacina-hpv",
+      "name": "Vacina contra o HPV",
+      "category": "prevencao",
+      "purpose": "Prevenir a infecção pelos tipos de HPV mais associados ao câncer do colo do útero.",
+      "ageMin": 9,
+      "ageMax": 14,
+      "interval": "Conforme o Calendário Nacional de Vacinação vigente",
+      "intervalMonths": null,
+      "conditional": false,
+      "notes": "Oferta e esquema de doses seguem o calendário do Programa Nacional de Imunizações, que pode ser atualizado; confirme na unidade de saúde. A vacina não substitui o rastreamento na idade indicada.",
+      "source": {
+        "org": "Ministério da Saúde (PNI)",
+        "title": "Calendário Nacional de Vacinação",
+        "year": 2024
+      },
+      "lastReviewed": "2026-10-24"
+    },
+    {
+      "id": "afericao-pressao",
+      "name": "Aferição da pressão arterial",
+      "category": "cardiovascular",
+      "purpose": "Detectar hipertensão, que costuma ser silenciosa e é um dos principais fatores de risco para infarto e acidente vascular cerebral.",
+      "ageMin": 18,
+      "ageMax": null,
+      "interval": "Anual, ou em todas as consultas de rotina",
+      "intervalMonths": 12,
+      "conditional": false,
+      "notes": "Pessoas com pressão elevada, diabetes, doença renal ou histórico familiar podem precisar de medições mais frequentes.",
+      "source": {
+        "org": "Sociedade Brasileira de Cardiologia",
+        "title": "Diretrizes Brasileiras de Hipertensão Arterial",
+        "year": 2020
+      },
+      "lastReviewed": "2026-10-24"
+    },
+    {
+      "id": "perfil-lipidico",
+      "name": "Perfil lipídico (colesterol total e frações)",
+      "category": "metabolico",
+      "purpose": "Avaliar colesterol e triglicerídeos, ajudando a estimar o risco cardiovascular.",
+      "ageMin": 20,
+      "ageMax": null,
+      "interval": "A cada 5 anos; mais frequente a partir dos 40 anos ou com fatores de risco",
+      "intervalMonths": 60,
+      "conditional": false,
+      "notes": "A frequência deve ser definida conforme risco cardiovascular, outras doenças e uso de medicamentos.",
+      "source": {
+        "org": "Sociedade Brasileira de Cardiologia",
+        "title": "Diretrizes de dislipidemias e prevenção cardiovascular",
+        "year": 2017
+      },
+      "lastReviewed": "2026-10-24"
+    },
+    {
+      "id": "glicemia-jejum",
+      "name": "Glicemia de jejum",
+      "category": "metabolico",
+      "purpose": "Rastrear diabetes e alterações da glicose, que podem se desenvolver sem sintomas.",
+      "ageMin": 35,
+      "ageMax": null,
+      "interval": "Anual, quando houver fatores de risco; ou conforme avaliação",
+      "intervalMonths": 12,
+      "conditional": true,
+      "notes": "Indicação e frequência dependem de fatores de risco como histórico familiar, excesso de peso, hipertensão, diabetes gestacional prévio ou síndrome dos ovários policísticos.",
+      "source": {
+        "org": "Sociedade Brasileira de Diabetes",
+        "title": "Diretrizes da Sociedade Brasileira de Diabetes",
+        "year": 2024
+      },
+      "lastReviewed": "2026-10-24"
+    },
+    {
+      "id": "densitometria-ossea",
+      "name": "Densitometria óssea",
+      "category": "ossos",
+      "purpose": "Medir a densidade mineral óssea para identificar osteopenia e osteoporose, que elevam o risco de fraturas após a menopausa.",
+      "ageMin": 65,
+      "ageMax": null,
+      "interval": "A cada 2 anos, ou conforme avaliação",
+      "intervalMonths": 24,
+      "conditional": true,
+      "notes": "Entre 50 e 64 anos, a indicação depende de fatores de risco (menopausa precoce, fratura prévia por fragilidade, uso prolongado de corticoide, histórico familiar, baixo peso). Abaixo dos 50 anos, apenas em situações específicas avaliadas por profissional de saúde.",
+      "source": {
+        "org": "Febrasgo e SBEM",
+        "title": "Recomendações para prevenção e tratamento da osteoporose pós-menopausa",
+        "year": 2022
+      },
+      "lastReviewed": "2026-10-24"
+    },
+    {
+      "id": "rastreio-colorretal",
+      "name": "Rastreio do câncer colorretal",
+      "category": "rastreamento",
+      "purpose": "Detectar precocemente o câncer de intestino e lesões precursoras (pólipos).",
+      "ageMin": 50,
+      "ageMax": 75,
+      "interval": "Sangue oculto nas fezes anual ou colonoscopia a cada 10 anos",
+      "intervalMonths": 12,
+      "conditional": false,
+      "notes": "A escolha do método depende da disponibilidade no serviço e da avaliação de risco. Histórico familiar importante pode antecipar o início do rastreamento.",
+      "source": {
+        "org": "INCA",
+        "title": "Diretrizes para o rastreamento do câncer colorretal",
+        "year": 2013
+      },
+      "lastReviewed": "2026-10-24"
+    },
+    {
+      "id": "testes-ists",
+      "name": "Testes de HIV, sífilis e hepatites B e C",
+      "category": "ists",
+      "purpose": "Diagnosticar infecções sexualmente transmissíveis que podem ser silenciosas e têm tratamento ou acompanhamento disponíveis.",
+      "ageMin": 15,
+      "ageMax": null,
+      "interval": "Pelo menos uma vez na vida, e novamente conforme exposição ou gestação",
+      "intervalMonths": null,
+      "conditional": true,
+      "notes": "A indicação depende de vida sexual ativa, situações de exposição, gestação e outros critérios avaliados no serviço de saúde. Oferta gratuita no SUS.",
+      "source": {
+        "org": "Ministério da Saúde",
+        "title": "Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com ISTs",
+        "year": 2022
+      },
+      "lastReviewed": "2026-10-24"
+    },
+    {
+      "id": "pre-natal",
+      "name": "Acompanhamento de pré-natal",
+      "category": "gestacao",
+      "purpose": "Acompanhar a gestação com consultas e exames que protegem a saúde da gestante e do bebê.",
+      "ageMin": 15,
+      "ageMax": 49,
+      "interval": "Mensal no início, com frequência crescente no final da gestação",
+      "intervalMonths": null,
+      "conditional": true,
+      "notes": "Indicado apenas durante a gestação. O número de consultas e os exames seguem o protocolo do serviço; o pré-natal deve começar assim que a gestação é confirmada.",
+      "source": {
+        "org": "Ministério da Saúde",
+        "title": "Caderneta da Gestante",
+        "year": 2022
+      },
+      "lastReviewed": "2026-10-24"
+    },
+    {
+      "id": "saude-mental",
+      "name": "Rastreio de saúde mental (depressão e ansiedade)",
+      "category": "mental",
+      "purpose": "Identificar sinais de depressão e ansiedade, condições comuns e tratáveis que afetam a saúde como um todo.",
+      "ageMin": 18,
+      "ageMax": null,
+      "interval": "Anual, ou quando houver sinais e sintomas",
+      "intervalMonths": 12,
+      "conditional": false,
+      "notes": "Pode ser feito na atenção básica, com escuta e questionários breves. Depressão pós-parto e sintomas no climatério merecem atenção específica.",
+      "source": {
+        "org": "Ministério da Saúde",
+        "title": "Caderno de Atenção Básica: Saúde Mental",
+        "year": 2013
+      },
+      "lastReviewed": "2026-10-24"
+    },
+    {
+      "id": "avaliacao-odontologica",
+      "name": "Avaliação odontológica",
+      "category": "bucal",
+      "purpose": "Prevenir cáries e doenças da gengiva, que podem se agravar e impactar a saúde geral.",
+      "ageMin": 18,
+      "ageMax": null,
+      "interval": "A cada 6 meses, ou conforme orientação do dentista",
+      "intervalMonths": 6,
+      "conditional": false,
+      "notes": "A periodicidade pode variar conforme o risco individual de cárie e doença periodontal.",
+      "source": {
+        "org": "Conselho Federal de Odontologia",
+        "title": "Orientações de prevenção em saúde bucal",
+        "year": 2021
+      },
+      "lastReviewed": "2026-10-24"
+    }
+  ]
+}
