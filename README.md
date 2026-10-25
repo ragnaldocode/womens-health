@@ -45,7 +45,7 @@ src/
     sqlite.web.ts      # stub de plataforma (web não usa SQLite)
     web.ts             # localStorage (apenas verificação no navegador)
   lib/format.ts        # formatação de datas pt-BR
-  theme.ts             # cores, espaçamento, tema claro/escuro
+  theme.ts             # paleta rosa, tipografia de display, espaçamento e sombras
 scripts/
   verify-domain.mjs    # 86 verificações da lógica, sem framework de teste
 ```
@@ -123,7 +123,7 @@ ordenação das recomendações.
 A UI foi verificada no build web (Expo Router + react-native-web) com: onboarding e validação de
 data inválida, filtro automático por idade, busca, troca de categoria, deep link para detalhes,
 registro com data passada, rejeição de data futura, remoção em duas etapas, recálculo de idade ao
-alterar a data de nascimento e tema escuro. **Não cobre** gestos nativos, layout em aparelhos
+alterar a data de nascimento e o tema claro em tons de rosa. **Não cobre** gestos nativos, layout em aparelhos
 específicos nem Expo Go — isso exige teste em dispositivo real.
 
 ## Próximos passos (fora do MVP)

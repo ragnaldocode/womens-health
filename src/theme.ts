@@ -1,65 +1,100 @@
-import { useColorScheme } from 'react-native';
+import { Platform } from 'react-native';
 
+/**
+ * Tema claro único do app: rosas suaves, superfícies brancas e tipografia
+ * de display em serifa para um tom mais acolhedor e feminino.
+ * O app não alterna mais com o tema do sistema — a identidade visual é fixa.
+ */
 export interface Theme {
-  name: 'light' | 'dark';
+  name: 'light';
   colors: {
     background: string;
     surface: string;
     surfaceMuted: string;
     border: string;
+    borderStrong: string;
     text: string;
     textMuted: string;
     primary: string;
+    primaryDark: string;
     primaryText: string;
     primarySoft: string;
+    accent: string;
+    accentSoft: string;
     success: string;
     successSoft: string;
     warning: string;
     warningSoft: string;
     danger: string;
+    dangerSoft: string;
+    shadow: string;
+  };
+  gradients: {
+    hero: readonly [string, string, string];
+    blush: readonly [string, string];
+    primary: readonly [string, string];
+    progress: readonly [string, string];
   };
 }
 
-export const themes: Record<'light' | 'dark', Theme> = {
-  light: {
-    name: 'light',
-    colors: {
-      background: '#FDF8FA',
-      surface: '#FFFFFF',
-      surfaceMuted: '#F6ECF0',
-      border: '#EAD9E1',
-      text: '#2B1620',
-      textMuted: '#6F5662',
-      primary: '#8A2E56',
-      primaryText: '#FFFFFF',
-      primarySoft: '#F3DEE7',
-      success: '#1F7A5C',
-      successSoft: '#DDF0E8',
-      warning: '#8A5A18',
-      warningSoft: '#FAEEDA',
-      danger: '#9B2C2C',
-    },
+export const theme: Theme = {
+  name: 'light',
+  colors: {
+    background: '#FFF6FA',
+    surface: '#FFFFFF',
+    surfaceMuted: '#FDEDF4',
+    border: '#F6D7E4',
+    borderStrong: '#EFBFD5',
+    text: '#4A2136',
+    textMuted: '#8B6076',
+    primary: '#D6336C',
+    primaryDark: '#B02A58',
+    primaryText: '#FFFFFF',
+    primarySoft: '#FCE3ED',
+    accent: '#FF8FB0',
+    accentSoft: '#FFE7F0',
+    success: '#22795E',
+    successSoft: '#E3F6EF',
+    warning: '#8A5A18',
+    warningSoft: '#FFF2DF',
+    danger: '#B3243F',
+    dangerSoft: '#FDE7EC',
+    shadow: '#C2447A',
   },
-  dark: {
-    name: 'dark',
-    colors: {
-      background: '#140A10',
-      surface: '#21131A',
-      surfaceMuted: '#2C1A23',
-      border: '#3C2531',
-      text: '#F8EEF3',
-      textMuted: '#BFA6B1',
-      primary: '#E68FB4',
-      primaryText: '#2A0E1C',
-      primarySoft: '#40202E',
-      success: '#66D6AA',
-      successSoft: '#1C3A2F',
-      warning: '#F0BE72',
-      warningSoft: '#3A2C17',
-      danger: '#F09A9A',
-    },
+  gradients: {
+    hero: ['#FFE1EC', '#FFF0F6', '#FFF6FA'],
+    blush: ['#FFE9F1', '#FFF6FA'],
+    primary: ['#E23E74', '#C02B5F'],
+    progress: ['#FF8FB0', '#D6336C'],
   },
 };
+
+export const fonts = {
+  /** Serifa elegante para títulos (Georgia no iOS/web, serif no Android). */
+  display: Platform.select({
+    ios: 'Georgia',
+    android: 'serif',
+    web: 'Georgia, "Times New Roman", serif',
+    default: 'serif',
+  }),
+};
+
+export const shadows = {
+  card: {
+    shadowColor: theme.colors.shadow,
+    shadowOpacity: 0.1,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 2,
+  },
+  button: {
+    shadowColor: theme.colors.shadow,
+    shadowOpacity: 0.28,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 4,
+  },
+} as const;
 
 export const spacing = {
   xs: 4,
@@ -71,13 +106,13 @@ export const spacing = {
 } as const;
 
 export const radius = {
-  sm: 8,
-  md: 12,
-  lg: 18,
+  sm: 12,
+  md: 16,
+  lg: 24,
+  xl: 32,
   pill: 999,
 } as const;
 
 export function useTheme(): Theme {
-  const scheme = useColorScheme();
-  return scheme === 'dark' ? themes.dark : themes.light;
+  return theme;
 }

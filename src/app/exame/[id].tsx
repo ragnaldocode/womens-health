@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Redirect, Stack, router, useLocalSearchParams } from 'expo-router';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/button';
@@ -12,7 +13,7 @@ import { validatePastDate } from '@/domain/age';
 import { appliesToAge, categoryLabel, examAgeLabel, findExam } from '@/domain/exams';
 import { isoToBr } from '@/lib/format';
 import { useAppData } from '@/hooks/use-app-data';
-import { radius, spacing, useTheme } from '@/theme';
+import { radius, shadows, spacing, useTheme } from '@/theme';
 
 export default function ExamDetailScreen() {
   const theme = useTheme();
@@ -41,7 +42,11 @@ export default function ExamDetailScreen() {
       <Screen>
         <Stack.Screen options={{ title: 'Exame não encontrado' }} />
         <View
-          style={[styles.card, { backgroundColor: theme.colors.surface, borderColor: theme.colors.border }]}
+          style={[
+            styles.card,
+            shadows.card,
+            { backgroundColor: theme.colors.surface, borderColor: theme.colors.border },
+          ]}
         >
           <Subtitle>Exame não encontrado</Subtitle>
           <Muted>Este item não está no catálogo atual do aplicativo.</Muted>
@@ -81,17 +86,27 @@ export default function ExamDetailScreen() {
     <Screen>
       <Stack.Screen options={{ title: exam.name }} />
 
-      <View style={{ gap: spacing.xs }}>
-        <Label>{categoryLabel(exam.category)}</Label>
+      <LinearGradient
+        colors={theme.gradients.hero}
+        start={{ x: 0.1, y: 0 }}
+        end={{ x: 0.9, y: 1 }}
+        style={[styles.hero, shadows.card, { borderColor: theme.colors.border }]}
+      >
+        <Label style={{ color: theme.colors.primaryDark }}>{categoryLabel(exam.category)}</Label>
         <Title>{exam.name}</Title>
         <Muted>
           {examAgeLabel(exam)}
           {applies ? '' : ' · fora da sua faixa etária atual'}
         </Muted>
-      </View>
+      </LinearGradient>
 
       {exam.conditional ? (
-        <View style={[styles.flag, { backgroundColor: theme.colors.warningSoft }]}>
+        <View
+          style={[
+            styles.flag,
+            { backgroundColor: theme.colors.warningSoft, borderColor: theme.colors.warning },
+          ]}
+        >
           <Body style={{ color: theme.colors.warning, fontWeight: '700' }}>
             Depende de avaliação profissional
           </Body>
@@ -108,7 +123,11 @@ export default function ExamDetailScreen() {
       </View>
 
       <View
-        style={[styles.card, { backgroundColor: theme.colors.surface, borderColor: theme.colors.border }]}
+        style={[
+          styles.card,
+          shadows.card,
+          { backgroundColor: theme.colors.surface, borderColor: theme.colors.border },
+        ]}
       >
         <View style={styles.infoRow}>
           <Label>Faixa etária de referência</Label>
@@ -121,14 +140,23 @@ export default function ExamDetailScreen() {
       </View>
 
       {exam.notes ? (
-        <View style={[styles.card, { backgroundColor: theme.colors.surfaceMuted, borderColor: theme.colors.border }]}>
+        <View
+          style={[
+            styles.card,
+            { backgroundColor: theme.colors.surfaceMuted, borderColor: theme.colors.border },
+          ]}
+        >
           <Label>Ressalvas importantes</Label>
           <Muted>{exam.notes}</Muted>
         </View>
       ) : null}
 
       <View
-        style={[styles.card, { backgroundColor: theme.colors.surface, borderColor: theme.colors.border }]}
+        style={[
+          styles.card,
+          shadows.card,
+          { backgroundColor: theme.colors.surface, borderColor: theme.colors.border },
+        ]}
       >
         <Label>Fonte</Label>
         <Body style={{ fontWeight: '600' }}>
@@ -188,7 +216,11 @@ export default function ExamDetailScreen() {
       </View>
 
       <View
-        style={[styles.card, { backgroundColor: theme.colors.surface, borderColor: theme.colors.border }]}
+        style={[
+          styles.card,
+          shadows.card,
+          { backgroundColor: theme.colors.surface, borderColor: theme.colors.border },
+        ]}
       >
         <Subtitle>{records.length === 0 ? 'Registrar realização' : 'Registrar nova realização'}</Subtitle>
         <Muted>Informe a data em que o exame foi feito. O registro fica salvo apenas neste aparelho.</Muted>
@@ -207,13 +239,19 @@ export default function ExamDetailScreen() {
 }
 
 const styles = StyleSheet.create({
+  hero: {
+    borderWidth: 1,
+    borderRadius: radius.xl,
+    padding: spacing.xl,
+    gap: spacing.xs,
+  },
   card: {
     borderWidth: 1,
     borderRadius: radius.lg,
     padding: spacing.lg,
     gap: spacing.xs,
   },
-  flag: { borderRadius: radius.lg, padding: spacing.lg, gap: spacing.xs },
+  flag: { borderRadius: radius.lg, borderWidth: 1, padding: spacing.lg, gap: spacing.xs },
   infoRow: { gap: 2 },
   recordRow: {
     flexDirection: 'row',

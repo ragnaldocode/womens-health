@@ -1,6 +1,8 @@
 import { Redirect, router } from 'expo-router';
-import { StyleSheet, Text, View } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { BrandMark } from '@/components/brand';
 import { Button } from '@/components/button';
 import { ExamCard } from '@/components/exam-card';
 import { LoadingScreen } from '@/components/loading-screen';
@@ -11,7 +13,7 @@ import { bandForAge, formatAge } from '@/domain/age';
 import { appliesToAge, recommendations, summarize } from '@/domain/exams';
 import { isoToBr } from '@/lib/format';
 import { useAppData } from '@/hooks/use-app-data';
-import { radius, spacing, useTheme } from '@/theme';
+import { fonts, radius, shadows, spacing, useTheme } from '@/theme';
 
 export default function HomeScreen() {
   const theme = useTheme();
@@ -40,37 +42,68 @@ export default function HomeScreen() {
   const bandLabel = band?.label ?? bandForAge(ageYears ?? 0)?.label ?? null;
 
   return (
-    <Screen>
-      <View style={styles.header}>
-        <Label>Saúde preventiva</Label>
-        <Title>Acompanhe seus exames</Title>
-        <View style={[styles.agePill, { backgroundColor: theme.colors.primarySoft }]}>
-          <Text style={[styles.ageText, { color: theme.colors.primary }]}>
-            {age ? `${formatAge(age)}` : 'Idade não calculada'}
-            {bandLabel ? ` · ${bandLabel}` : ''}
-          </Text>
+    <Screen noHeader>
+      <LinearGradient
+        colors={theme.gradients.hero}
+        start={{ x: 0.1, y: 0 }}
+        end={{ x: 0.9, y: 1 }}
+        style={[styles.hero, shadows.card, { borderColor: theme.colors.border }]}
+      >
+        <BrandMark size={40} withWordmark />
+        <View style={{ gap: spacing.xs }}>
+          <Title>Acompanhe seus exames</Title>
+          <Body style={{ color: theme.colors.textMuted }}>
+            Um espaço só seu para saber quais exames preventivos fazem sentido agora.
+          </Body>
         </View>
-      </View>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={`Alterar data de nascimento. ${age ? formatAge(age) : 'Idade não calculada'}`}
+          onPress={() => router.push('/onboarding')}
+          style={({ pressed }) => [
+            styles.agePill,
+            { backgroundColor: '#FFFFFF', opacity: pressed ? 0.85 : 1 },
+          ]}
+        >
+          <Text style={[styles.ageText, { color: theme.colors.primaryDark }]}>
+            {age ? formatAge(age) : 'Idade não calculada'}
+            {bandLabel ? ` · faixa ${bandLabel.replace(/ anos?$/, '')}` : ''}
+          </Text>
+          <Text style={[styles.ageEdit, { color: theme.colors.primary }]}>editar ›</Text>
+        </Pressable>
+      </LinearGradient>
 
       <View
-        style={[styles.card, { backgroundColor: theme.colors.surface, borderColor: theme.colors.border }]}
+        style={[
+          styles.card,
+          shadows.card,
+          { backgroundColor: theme.colors.surface, borderColor: theme.colors.border },
+        ]}
       >
-        <Body style={{ fontWeight: '600' }}>
-          {summary.performedApplicable} de {summary.applicable} exames recomendados para a sua idade
-          estão marcados como realizados
-        </Body>
-        <View style={[styles.track, { backgroundColor: theme.colors.surfaceMuted }]}>
-          <View
-            style={[
-              styles.fill,
-              {
-                width: `${summary.percentComplete}%`,
-                backgroundColor: theme.colors.primary,
-              },
-            ]}
+        <Label>Seu progresso</Label>
+        <View style={styles.progressRow}>
+          <Text style={[styles.percent, { color: theme.colors.primary }]}>
+            {summary.percentComplete}%
+          </Text>
+          <Muted style={{ paddingBottom: 8 }}>concluído</Muted>
+        </View>
+        <View
+          style={[
+            styles.track,
+            { backgroundColor: theme.colors.primarySoft, borderColor: theme.colors.border },
+          ]}
+        >
+          <LinearGradient
+            colors={theme.gradients.progress}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={[styles.fill, { width: `${summary.percentComplete}%` }]}
           />
         </View>
-        <Muted>{summary.percentComplete}% concluído · dados salvos apenas neste dispositivo</Muted>
+        <Body style={{ fontWeight: '600' }}>
+          {summary.performedApplicable} de {summary.applicable} exames recomendados para a sua idade
+        </Body>
+        <Muted>Dados salvos apenas neste dispositivo.</Muted>
       </View>
 
       <View style={styles.statsRow}>
@@ -83,22 +116,31 @@ export default function HomeScreen() {
           <Muted style={{ color: theme.colors.success }}>Realizados</Muted>
         </View>
         <View
-          style={[styles.stat, { backgroundColor: theme.colors.surfaceMuted, borderColor: theme.colors.border }]}
+          style={[
+            styles.stat,
+            { backgroundColor: theme.colors.accentSoft, borderColor: theme.colors.border },
+          ]}
         >
-          <Text style={[styles.statNumber, { color: theme.colors.text }]}>
+          <Text style={[styles.statNumber, { color: theme.colors.primaryDark }]}>
             {summary.pendingApplicable}
           </Text>
-          <Muted>Pendentes</Muted>
+          <Muted style={{ color: theme.colors.primaryDark }}>Pendentes</Muted>
         </View>
       </View>
 
       <Button label="Ver todos os exames" onPress={() => router.push('/lista')} />
 
       <View style={{ gap: spacing.md }}>
-        <Subtitle>Recomendados para você</Subtitle>
+        <View style={styles.sectionHeader}>
+          <Subtitle>Recomendados para você</Subtitle>
+          <View style={[styles.sectionDash, { backgroundColor: theme.colors.accent }]} />
+        </View>
         {suggestions.length === 0 ? (
           <View
-            style={[styles.card, { backgroundColor: theme.colors.successSoft, borderColor: 'transparent' }]}
+            style={[
+              styles.card,
+              { backgroundColor: theme.colors.successSoft, borderColor: 'transparent' },
+            ]}
           >
             <Body style={{ color: theme.colors.success, fontWeight: '600' }}>
               Todos os exames da sua faixa etária já estão marcados como realizados.
@@ -127,7 +169,10 @@ export default function HomeScreen() {
       </View>
 
       <View
-        style={[styles.card, { backgroundColor: theme.colors.surfaceMuted, borderColor: theme.colors.border }]}
+        style={[
+          styles.card,
+          { backgroundColor: theme.colors.surfaceMuted, borderColor: theme.colors.border },
+        ]}
       >
         <Label>Sobre o conteúdo</Label>
         <Muted>{CATALOG.disclaimer}</Muted>
@@ -138,12 +183,6 @@ export default function HomeScreen() {
             : ''}
         </Muted>
       </View>
-
-      <Button
-        label="Alterar data de nascimento"
-        variant="secondary"
-        onPress={() => router.push('/onboarding')}
-      />
     </Screen>
   );
 }
@@ -156,22 +195,42 @@ const styles = StyleSheet.create({
     gap: spacing.md,
     padding: spacing.xl,
   },
-  header: { gap: spacing.xs },
+  hero: {
+    borderWidth: 1,
+    borderRadius: radius.xl,
+    padding: spacing.xl,
+    gap: spacing.md,
+  },
   agePill: {
     alignSelf: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
     paddingHorizontal: spacing.md,
-    paddingVertical: spacing.xs,
+    paddingVertical: 7,
     borderRadius: radius.pill,
-    marginTop: spacing.xs,
   },
   ageText: { fontSize: 13, fontWeight: '700' },
+  ageEdit: { fontSize: 12, fontWeight: '700' },
   card: {
     borderWidth: 1,
     borderRadius: radius.lg,
     padding: spacing.lg,
     gap: spacing.sm,
   },
-  track: { height: 10, borderRadius: radius.pill, overflow: 'hidden', marginTop: spacing.xs },
+  progressRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    gap: spacing.sm,
+  },
+  percent: { fontFamily: fonts.display, fontSize: 34, lineHeight: 40, fontWeight: '600' },
+  track: {
+    height: 12,
+    borderRadius: radius.pill,
+    borderWidth: 1,
+    overflow: 'hidden',
+    marginTop: spacing.xs,
+  },
   fill: { height: '100%', borderRadius: radius.pill },
   statsRow: { flexDirection: 'row', gap: spacing.md },
   stat: {
@@ -181,5 +240,7 @@ const styles = StyleSheet.create({
     padding: spacing.lg,
     gap: spacing.xs,
   },
-  statNumber: { fontSize: 30, fontWeight: '700' },
+  statNumber: { fontFamily: fonts.display, fontSize: 32, lineHeight: 38, fontWeight: '600' },
+  sectionHeader: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
+  sectionDash: { width: 28, height: 3, borderRadius: radius.pill },
 });

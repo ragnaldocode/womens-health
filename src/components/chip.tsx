@@ -27,7 +27,7 @@ export function Chip({ label, selected = false, onPress }: ChipProps) {
       <Text
         style={[
           styles.text,
-          { color: selected ? theme.colors.primaryText : theme.colors.textMuted },
+          { color: selected ? theme.colors.primaryText : theme.colors.primaryDark },
         ]}
       >
         {label}
@@ -38,11 +38,11 @@ export function Chip({ label, selected = false, onPress }: ChipProps) {
 
 const styles = StyleSheet.create({
   chip: {
-    paddingHorizontal: spacing.md,
+    paddingHorizontal: spacing.lg,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    minHeight: 36,
+    minHeight: 38,
     justifyContent: 'center',
   },
   text: { fontSize: 13, fontWeight: '600' },

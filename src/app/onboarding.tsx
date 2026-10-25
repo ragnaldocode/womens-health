@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react';
 import { router } from 'expo-router';
+import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, View } from 'react-native';
 
+import { BrandMark } from '@/components/brand';
 import { Button } from '@/components/button';
 import { DateField, dateValueFromIso, type DateValue } from '@/components/date-field';
 import { LoadingScreen } from '@/components/loading-screen';
@@ -9,7 +11,7 @@ import { Screen } from '@/components/screen';
 import { Body, Label, Muted, Title } from '@/components/typography';
 import { ageInYears, bandForAge, validateBirthDate } from '@/domain/age';
 import { useAppData } from '@/hooks/use-app-data';
-import { useTheme } from '@/theme';
+import { radius, spacing, useTheme } from '@/theme';
 
 export default function OnboardingScreen() {
   const { status, profile } = useAppData();
@@ -66,12 +68,15 @@ function OnboardingForm() {
 
   return (
     <Screen>
-      <View style={{ gap: 4 }}>
-        <Label>Primeiro acesso</Label>
-        <Title>{editing ? 'Alterar data de nascimento' : 'Vamos começar'}</Title>
+      <View style={styles.header}>
+        <BrandMark withWordmark size={38} />
+        <View style={{ gap: spacing.xs }}>
+          <Label>{editing ? 'Seus dados' : 'Primeiro acesso'}</Label>
+          <Title>{editing ? 'Alterar data de nascimento' : 'Vamos começar'}</Title>
+        </View>
       </View>
 
-      <Body>
+      <Body style={{ color: theme.colors.textMuted }}>
         {editing
           ? 'Sua idade é recalculada a partir da data de nascimento sempre que o app é aberto. Ajuste a data se estiver incorreta.'
           : 'Precisamos apenas da sua data de nascimento. Com ela, calculamos sua idade e mostramos os exames preventivos recomendados para a sua faixa etária.'}
@@ -80,19 +85,22 @@ function OnboardingForm() {
       <DateField value={value} onChange={setValue} error={error} disabled={saving} />
 
       {preview ? (
-        <View
-          style={[styles.preview, { backgroundColor: theme.colors.primarySoft }]}
+        <LinearGradient
+          colors={theme.gradients.blush}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={[styles.preview, { borderColor: theme.colors.border }]}
           accessibilityLiveRegion="polite"
         >
-          <Body style={{ color: theme.colors.primary, fontWeight: '700' }}>
+          <Body style={{ color: theme.colors.primaryDark, fontWeight: '700' }}>
             Idade hoje: {preview.years} {preview.years === 1 ? 'ano' : 'anos'}
-            {preview.band ? ` · ${preview.band.label}` : ''}
+            {preview.band ? ` · faixa ${preview.band.label.replace(/ anos?$/, '')}` : ''}
           </Body>
-          <Muted style={{ color: theme.colors.primary }}>
+          <Muted style={{ color: theme.colors.primaryDark }}>
             A idade é recalculada automaticamente com o passar do tempo — você não precisa
             atualizá-la.
           </Muted>
-        </View>
+        </LinearGradient>
       ) : null}
 
       <Button
@@ -106,7 +114,7 @@ function OnboardingForm() {
       ) : null}
 
       <View
-        style={[styles.note, { backgroundColor: theme.colors.surfaceMuted, borderColor: theme.colors.border }]}
+        style={[styles.note, { backgroundColor: theme.colors.surface, borderColor: theme.colors.border }]}
       >
         <Label>Privacidade</Label>
         <Muted>
@@ -119,6 +127,7 @@ function OnboardingForm() {
 }
 
 const styles = StyleSheet.create({
-  preview: { borderRadius: 16, padding: 16, gap: 4 },
-  note: { borderWidth: 1, borderRadius: 16, padding: 16, gap: 4 },
+  header: { gap: spacing.lg },
+  preview: { borderRadius: radius.lg, borderWidth: 1, padding: spacing.lg, gap: spacing.xs },
+  note: { borderWidth: 1, borderRadius: radius.lg, padding: spacing.lg, gap: spacing.xs },
 });

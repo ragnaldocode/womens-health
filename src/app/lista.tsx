@@ -16,7 +16,7 @@ import {
   type ExamCategoryId,
 } from '@/domain/exams';
 import { useAppData } from '@/hooks/use-app-data';
-import { radius, spacing, useTheme } from '@/theme';
+import { radius, shadows, spacing, useTheme } from '@/theme';
 
 export default function ListScreen() {
   const theme = useTheme();
@@ -63,6 +63,7 @@ export default function ListScreen() {
   return (
     <Screen>
       <View style={{ gap: spacing.xs }}>
+        <Label>Catálogo</Label>
         <Title>Exames preventivos</Title>
         <Muted>
           {onlyForAge && ageYears !== null
@@ -80,6 +81,7 @@ export default function ListScreen() {
         autoCorrect={false}
         style={[
           styles.search,
+          shadows.card,
           {
             backgroundColor: theme.colors.surface,
             borderColor: theme.colors.border,
@@ -131,14 +133,20 @@ export default function ListScreen() {
             accessibilityLabel="Limpar filtros"
             onPress={clearFilters}
           >
-            <Muted style={{ color: theme.colors.primary, fontWeight: '700' }}>Limpar filtros</Muted>
+            <Muted style={{ color: theme.colors.primaryDark, fontWeight: '700' }}>
+              Limpar filtros
+            </Muted>
           </Pressable>
         )}
       </View>
 
       {filtered.length === 0 ? (
         <View
-          style={[styles.empty, { backgroundColor: theme.colors.surface, borderColor: theme.colors.border }]}
+          style={[
+            styles.empty,
+            shadows.card,
+            { backgroundColor: theme.colors.surface, borderColor: theme.colors.border },
+          ]}
         >
           <Body style={{ fontWeight: '600' }}>Nenhum exame encontrado</Body>
           <Muted>Tente outro termo de busca ou remova os filtros aplicados.</Muted>
@@ -164,9 +172,9 @@ export default function ListScreen() {
 const styles = StyleSheet.create({
   search: {
     borderWidth: 1,
-    borderRadius: radius.md,
-    paddingHorizontal: spacing.md,
-    minHeight: 48,
+    borderRadius: radius.pill,
+    paddingHorizontal: spacing.xl,
+    minHeight: 52,
     fontSize: 15,
   },
   toggleRow: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },

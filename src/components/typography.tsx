@@ -1,13 +1,23 @@
 import { Text, type TextProps } from 'react-native';
 
-import { useTheme } from '@/theme';
+import { fonts, useTheme } from '@/theme';
 
 export function Title({ style, ...props }: TextProps) {
   const theme = useTheme();
   return (
     <Text
       accessibilityRole="header"
-      style={[{ color: theme.colors.text, fontSize: 26, fontWeight: '700' }, style]}
+      style={[
+        {
+          color: theme.colors.text,
+          fontFamily: fonts.display,
+          fontSize: 30,
+          lineHeight: 37,
+          fontWeight: '600',
+          letterSpacing: 0.2,
+        },
+        style,
+      ]}
       {...props}
     />
   );
@@ -17,7 +27,16 @@ export function Subtitle({ style, ...props }: TextProps) {
   const theme = useTheme();
   return (
     <Text
-      style={[{ color: theme.colors.text, fontSize: 18, fontWeight: '600' }, style]}
+      style={[
+        {
+          color: theme.colors.text,
+          fontFamily: fonts.display,
+          fontSize: 20,
+          lineHeight: 26,
+          fontWeight: '600',
+        },
+        style,
+      ]}
       {...props}
     />
   );
@@ -26,14 +45,14 @@ export function Subtitle({ style, ...props }: TextProps) {
 export function Body({ style, ...props }: TextProps) {
   const theme = useTheme();
   return (
-    <Text style={[{ color: theme.colors.text, fontSize: 15, lineHeight: 22 }, style]} {...props} />
+    <Text style={[{ color: theme.colors.text, fontSize: 15, lineHeight: 23 }, style]} {...props} />
   );
 }
 
 export function Muted({ style, ...props }: TextProps) {
   const theme = useTheme();
   return (
-    <Text style={[{ color: theme.colors.textMuted, fontSize: 13, lineHeight: 19 }, style]} {...props} />
+    <Text style={[{ color: theme.colors.textMuted, fontSize: 13, lineHeight: 20 }, style]} {...props} />
   );
 }
 
@@ -44,9 +63,9 @@ export function Label({ style, ...props }: TextProps) {
       style={[
         {
           color: theme.colors.textMuted,
-          fontSize: 12,
+          fontSize: 11,
           fontWeight: '700',
-          letterSpacing: 0.8,
+          letterSpacing: 1.1,
           textTransform: 'uppercase',
         },
         style,

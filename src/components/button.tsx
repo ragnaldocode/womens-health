@@ -1,6 +1,7 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { radius, spacing, useTheme } from '@/theme';
+import { radius, shadows, spacing, useTheme } from '@/theme';
 
 interface ButtonProps {
   label: string;
@@ -23,22 +24,41 @@ export function Button({ label, onPress, variant = 'primary', disabled = false }
       onPress={onPress}
       style={({ pressed }) => [
         styles.base,
+        isPrimary ? shadows.button : null,
         {
           backgroundColor: isGhost
             ? 'transparent'
             : isPrimary
               ? theme.colors.primary
-              : theme.colors.surfaceMuted,
-          borderColor: isGhost ? 'transparent' : isPrimary ? theme.colors.primary : theme.colors.border,
-          opacity: disabled ? 0.5 : pressed ? 0.85 : 1,
+              : theme.colors.surface,
+          borderColor: isGhost
+            ? 'transparent'
+            : isPrimary
+              ? 'transparent'
+              : theme.colors.borderStrong,
+          opacity: disabled ? 0.5 : pressed ? 0.88 : 1,
         },
       ]}
     >
+      {isPrimary ? (
+        <LinearGradient
+          colors={theme.gradients.primary}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={[StyleSheet.absoluteFill, { borderRadius: radius.pill }]}
+        />
+      ) : null}
       <View style={styles.inner}>
         <Text
           style={[
             styles.text,
-            { color: isPrimary ? theme.colors.primaryText : theme.colors.text },
+            {
+              color: isPrimary
+                ? theme.colors.primaryText
+                : isGhost
+                  ? theme.colors.primaryDark
+                  : theme.colors.primaryDark,
+            },
           ]}
         >
           {label}
@@ -50,11 +70,12 @@ export function Button({ label, onPress, variant = 'primary', disabled = false }
 
 const styles = StyleSheet.create({
   base: {
-    borderRadius: radius.md,
+    borderRadius: radius.pill,
     borderWidth: 1,
-    minHeight: 48,
+    minHeight: 52,
     justifyContent: 'center',
+    overflow: 'hidden',
   },
-  inner: { paddingHorizontal: spacing.lg, paddingVertical: spacing.md },
-  text: { fontSize: 15, fontWeight: '700', textAlign: 'center' },
+  inner: { paddingHorizontal: spacing.xl, paddingVertical: spacing.md },
+  text: { fontSize: 15, fontWeight: '700', textAlign: 'center', letterSpacing: 0.2 },
 });

@@ -41,7 +41,7 @@ export function DateField({ value, onChange, error, disabled = false }: DateFiel
     <View style={styles.wrapper}>
       <View style={styles.row}>
         <View style={styles.small}>
-          <Label>Dia</Label>
+          <Label style={styles.label}>Dia</Label>
           <TextInput
             accessibilityLabel="Dia de nascimento"
             value={value.day}
@@ -61,7 +61,7 @@ export function DateField({ value, onChange, error, disabled = false }: DateFiel
           />
         </View>
         <View style={styles.small}>
-          <Label>Mês</Label>
+          <Label style={styles.label}>Mês</Label>
           <TextInput
             ref={monthRef}
             accessibilityLabel="Mês de nascimento"
@@ -82,7 +82,7 @@ export function DateField({ value, onChange, error, disabled = false }: DateFiel
           />
         </View>
         <View style={styles.large}>
-          <Label>Ano</Label>
+          <Label style={styles.label}>Ano</Label>
           <TextInput
             ref={yearRef}
             accessibilityLabel="Ano de nascimento"
@@ -123,6 +123,7 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', gap: spacing.sm },
   small: { flex: 1, gap: spacing.xs },
   large: { flex: 1.4, gap: spacing.xs },
+  label: { textAlign: 'center' },
   input: {
     borderWidth: 1,
     borderRadius: radius.md,
